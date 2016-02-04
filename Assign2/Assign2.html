@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="style2.css" type="text/css">
+		<meta charset="utf-8"/>
+		<script type="text/javascript">
+			var picNo = null;
+			var picture = new Array(10);
+			for (var i = 0; i < 10; i++){
+				picture[i] = new Image();
+			}
+			picture[0].src = "armory.jpg";
+			picture[1].src = "eddy.jpg";
+			picture[2].src = "folwell.jpg";
+			picture[3].src = "jones.jpg";
+			picture[4].src = "music.jpg";
+			picture[5].src = "nicholson.jpg";
+			picture[6].src = "pillsbury.jpg";
+			picture[7].src = "statue.jpg";
+			picture[8].src = "wesbrook.jpg";
+			picture[9].src = "wulling.jpg";
+			var buildingName = ["Armory Hall", "Eddy Hall", "Folwell Hall", "Jones Hall", "Music Education", "Nicholson Hall", "Pillsbury Hall", "Pillsbury Statue", "Wesbrook Hall", "Wulling Hall"]
+			var buildingArchitect = ["Charles Aldrich", "LeRoy Buffington", "Clarence H. Johnston, Sr.", "Charles Aldrich", "Warren H. Hayes", "LeRoy Buffington with Harvey Ellis", "Daniel C. French, sculptor", "Frederick Corser", "Allen Stem and Charles Reed"]
+			var buildingYear = ["1896", "1886", "1907", "1901", "1888", "1890", "1889", "1900", "1898", "1892"]
+			var buildingDescription = ["Built for athletics and military drill, as well as performing arts and social activities. Memorial plaques at the front entrance honor students, faculty, and alumni who fought in the Spanish-American War.", "Built as Mechanic Arts. It is the oldest existing building on campus. Named for Henry Turner Eddy, professor of engineering and mathematics and dean of the Graduate School.", "When Old Main burned in 1904, Folwell Hall was built to house displaced departments. Named for William Watts Folwell, first president of the University, 1869-84.", "Built as Physics Building. Named for Frederick S. Jones, professor of physics and dean of the College of Engineering.", "Built as Student Christian Association building. Acquired by the University, it housed Child Welfare and Music Education.", "Built as chemical laboratory. In 1914, chemistry moved to the mall area and Nicholson was remodeled for the men's union until Coffman Memorial Union was built as a coed student union. Named for Edward E. Nicholson, professor of chemistry and later dean of Student Affairs.", "Built as Science Hall. Named for Governor John S. Pillsbury.", "Pillsbury statue located across the street from Burton Hall.", "Built as Laboratory of Medical Science. In 1912, dentistry moved here.", "Built as Medical Hall; named Millard Hall in 1906. Fire damaged the building. It later became the site for the pharmacy building. Named for Frederick J. Wulling, first dean and founder of the College of Pharmacy."]
+			function Start(){
+				startClick = 1;
+				if(interval){
+					return;
+				}
+				clearBorder(picNo);
+				picNo = 0;
+				setBorder(picNo);
+				interval = window.setInterval("fadeOut()", 10);
+				document.getElementById("buildingName").innerHTML = "Building: " + buildingName[picNo];
+				boxClick();
+			}
+			function Next(){
+				if(interval){
+					return;
+				}
+				clearBorder(picNo);
+				if (picNo == 9){
+					picNo = 0;
+				}
+				else{
+					picNo += 1;
+				}
+				setBorder(picNo);
+				interval = window.setInterval("fadeOut()", 10);
+				document.getElementById("buildingName").innerHTML = "Building: " + buildingName[picNo];
+				boxClick();
+			}
+			function Previous(){
+				if(interval){
+					return;
+				}
+				clearBorder(picNo);
+				if (picNo == 0){
+					picNo = 9;
+				}
+				else{
+					picNo -= 1;
+				}
+				setBorder(picNo);
+				interval = window.setInterval("fadeOut()", 10);
+				document.getElementById("buildingName").innerHTML = "Building: " + buildingName[picNo];
+				boxClick();
+			}
+			function setBorder(n){		
+				switch(n){
+					case 0:
+					document.getElementById("0").style.borderStyle = "solid";
+					document.getElementById("0").style.borderColor = "red";
+					break;
+					case 1:
+					document.getElementById("1").style.borderStyle = "solid";
+					document.getElementById("1").style.borderColor = "red";
+					break;
+					case 2:
+					document.getElementById("2").style.borderStyle = "solid";
+					document.getElementById("2").style.borderColor = "red";
+					break;
+					case 3:
+					document.getElementById("3").style.borderStyle = "solid";
+					document.getElementById("3").style.borderColor = "red";
+					break;
+					case 4:
+					document.getElementById("4").style.borderStyle = "solid";
+					document.getElementById("4").style.borderColor = "red";
+					break;
+					case 5:
+					document.getElementById("5").style.borderStyle = "solid";
+					document.getElementById("5").style.borderColor = "red";
+					break;
+					case 6:
+					document.getElementById("6").style.borderStyle = "solid";
+					document.getElementById("6").style.borderColor = "red";
+					break;
+					case 7:
+					document.getElementById("7").style.borderStyle = "solid";
+					document.getElementById("7").style.borderColor = "red";
+					break;
+					case 8:
+					document.getElementById("8").style.borderStyle = "solid";
+					document.getElementById("8").style.borderColor = "red";
+					break;
+					case 9:
+					document.getElementById("9").style.borderStyle = "solid";
+					document.getElementById("9").style.borderColor = "red";
+					break;
+				}
+			}
+			function clearBorder(n){
+				switch(n){
+					case 0:
+					document.getElementById("0").style.borderStyle = "none";
+					break;
+					case 1:
+					document.getElementById("1").style.borderStyle = "none";
+					break;
+					case 2:
+					document.getElementById("2").style.borderStyle = "none";
+					break;
+					case 3:
+					document.getElementById("3").style.borderStyle = "none";
+					break;
+					case 4:
+					document.getElementById("4").style.borderStyle = "none";
+					break;
+					case 5:
+					document.getElementById("5").style.borderStyle = "none";
+					break;
+					case 6:
+					document.getElementById("6").style.borderStyle = "none";
+					break;
+					case 7:
+					document.getElementById("7").style.borderStyle = "none";
+					break;
+					case 8:
+					document.getElementById("8").style.borderStyle = "none";
+					break;
+					case 9:
+					document.getElementById("9").style.borderStyle = "none";
+					break;
+				}
+			}
+			function imgClick(n){
+				if(interval){
+					return;
+				}
+				clearBorder(picNo);
+				picNo = n;
+				setBorder(picNo);
+				interval = window.setInterval("fadeOut()", 10);
+				document.getElementById("buildingName").innerHTML = "Building: " + buildingName[picNo];
+				boxClick();
+			}
+			var interval = null;
+			var speed = 0.05;
+			var count = 1;
+			function fadeOut(){
+				count -= speed;
+				if(count <= 0){
+					window.clearInterval(interval);
+					document.getElementById("bigPicture").src = picture[picNo].src;
+					interval = window.setInterval("fadeIn()", 10);
+				}
+				document.getElementById("bigPicture").style.opacity = count;
+				
+			}
+			function fadeIn(){
+				count += speed;
+				if(count >= 1){
+					window.clearInterval(interval);
+					interval = null;
+				}
+				document.getElementById("bigPicture").style.opacity = count;			
+			}
+			function boxClick(){
+				infoType = document.getElementById("infoType").selectedIndex;
+				switch(infoType){
+					case 0:
+					document.getElementById("info").innerHTML = "";
+					break;
+					case 1:
+					document.getElementById("info").innerHTML = "Architect: " + buildingArchitect[picNo];
+					break;
+					case 2:
+					document.getElementById("info").innerHTML = "Year: " + buildingYear[picNo];
+					break;
+					case 3:
+					document.getElementById("info").innerHTML = "Description: " + buildingDescription[picNo];
+					break;
+				}
+			}
+			var showInterval = null;
+			function showStart(){
+				if(showInterval){
+					alert("Slide Show has already started.");
+					return;
+				}
+				if(picNo == null){
+				Start();
+				}
+				showInterval = window.setInterval("Next()", r * 1000);
+				disButton();
+			}
+			function showStop(){
+				window.clearInterval(showInterval);
+				showInterval = null;
+				enableButton();
+			}
+			var r = 5;
+			function rateChange(){
+				r = -document.getElementById("rate").value;
+				if(showInterval){
+					window.clearInterval(showInterval);
+					showInterval = window.setInterval("Next()", r * 1000);
+				}
+			}
+			function disButton(){
+				document.getElementById("buttonStart").disabled = true;
+				document.getElementById("buttonNext").disabled = true;
+				document.getElementById("buttonPrevious").disabled = true;
+			}
+			function enableButton(){
+				document.getElementById("buttonStart").disabled = false;
+				document.getElementById("buttonNext").disabled = false;
+				document.getElementById("buttonPrevious").disabled = false;
+			}
+		</script>
+		<title>Gallery</title>
+	</head>
+	<body>
+		<input id="buttonStart" type="button" value="Start" onClick="Start()"/>
+		<input id="buttonNext" type="button" value="Next" onClick="Next()"/>
+		<input id="buttonPrevious" type="button" value="Previous" onClick="Previous()"/>
+			Select Information Type:
+		<select id="infoType" onchange="boxClick()">
+			<option>None</option>
+			<option>Architect</option>
+			<option>Year</option>
+			<option>Description</option>
+		</select>
+		<br/>
+		<div id="thumbpic">
+		<img id="0" src="armory.jpg" width="50" height="50" alt="Amory" onClick="imgClick(0)">
+		<img id="1" src="eddy.jpg" width="50" height="50" alt="Eddy" onClick="imgClick(1)">
+		<img id="2" src="folwell.jpg" width="50" height="50" alt="Folwell" onClick="imgClick(2)">
+		<img id="3" src="jones.jpg" width="50" height="50" alt="Jones" onClick="imgClick(3)">
+		<img id="4" src="music.jpg" width="50" height="50" alt="Music" onClick="imgClick(4)">
+		<img id="5" src="nicholson.jpg" width="50" height="50" alt="Nicholson" onClick="imgClick(5)">
+		<img id="6" src="pillsbury.jpg" width="50" height="50" alt="Pillsbury" onClick="imgClick(6)">
+		<img id="7" src="statue.jpg" width="50" height="50" alt="Statue" onClick="imgClick(7)">
+		<img id="8" src="wesbrook.jpg" width="50" height="50" alt="Wesbrook" onClick="imgClick(8)">
+		<img id="9" src="wulling.jpg" width="50" height="50" alt="Wulling" onClick="imgClick(9)">
+		</div>
+		<hr/>
+		<div class="left">
+			<div>
+				<input type="button" value="Start Slide Show" onClick="showStart()">
+				<input type="button" value="Stop Slide Show" onClick="showStop()">
+			</div>
+			<br/>
+			<div>Slow
+				<input id="rate" type="range" min="-10" max="0" onchange="rateChange()">
+				Fast
+			</div>
+		</div>
+		<div class="mainpic">
+			<img src="#" id="bigPicture" width="500" height="300" alt="Press Start"/>
+			<div id="information">
+				<p>Image Information:</p>
+				<p id="buildingName"></p>
+				<p id="info"></p>
+			</div>
+		</div>
+	</body>
+</html>

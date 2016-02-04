@@ -1,0 +1,22 @@
+.right {
+	float: right;
+}
+.left {
+	float: left;
+	display: inline-block;
+	position: absolute;
+}
+.mainpic {
+	margin: 7%;
+}
+#thumbpic {
+	margin: 3px;
+}
+#information {
+	position: absolute;
+	float: left;
+	margin: 1%;
+	display: inline-block;
+	font-weight: bold;
+	font-size: 20px;
+}

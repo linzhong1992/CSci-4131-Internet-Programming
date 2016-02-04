@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>VenueMap</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <script>
+		var buildingLoc = new Array(10);
+		var buildingName = new Array(10);
+		var iconImg = 'icon.png';
+		var picture = new Array(10);
+		picture[0] = "armory.jpg";
+		picture[1] = "eddy.jpg";
+		picture[2] = "folwell.jpg";
+		picture[3] = "jones.jpg";
+		picture[4] = "music.jpg";
+		picture[5] = "nicholson.jpg";
+		picture[6] = "pillsbury.jpg";
+		picture[7] = "statue.jpg";
+		picture[8] = "wesbrook.jpg";
+		picture[9] = "wulling.jpg";
+		var buildingName = ["Armory Hall", "Eddy Hall", "Folwell Hall", "Jones Hall", "Music Education", "Nicholson Hall", "Pillsbury Hall", "Pillsbury Statue", "Wesbrook Hall", "Wulling Hall"];
+		var buildingArchitect = ["Charles Aldrich", "LeRoy Buffington", "Clarence H. Johnston, Sr.", "Charles Aldrich", "Warren H. Hayes", "LeRoy Buffington with Harvey Ellis", "LeRoy Buffington with Harvey Ellis", "Daniel C. French, sculptor", "Frederick Corser", "Allen Stem and Charles Reed"];
+		var buildingDescription = ["Built for athletics and military drill, as well as performing arts and social activities. Memorial plaques at the front entrance honor students, faculty, and alumni who fought in the Spanish-American War.", "Built as Mechanic Arts. It is the oldest existing building on campus. Named for Henry Turner Eddy, professor of engineering and mathematics and dean of the Graduate School.", "When Old Main burned in 1904, Folwell Hall was built to house displaced departments. Named for William Watts Folwell, first president of the University, 1869-84.", "Built as Physics Building. Named for Frederick S. Jones, professor of physics and dean of the College of Engineering.", "Built as Student Christian Association building. Acquired by the University, it housed Child Welfare and Music Education.", "Built as chemical laboratory. In 1914, chemistry moved to the mall area and Nicholson was remodeled for the men's union until Coffman Memorial Union was built as a coed student union. Named for Edward E. Nicholson, professor of chemistry and later dean of Student Affairs.", "Built as Science Hall. Named for Governor John S. Pillsbury.", "Pillsbury statue located across the street from Burton Hall.", "Built as Laboratory of Medical Science. In 1912, dentistry moved here.", "Built as Medical Hall; named Millard Hall in 1906. Fire damaged the building. It later became the site for the pharmacy building. Named for Frederick J. Wulling, first dean and founder of the College of Pharmacy."];
+		buildingLoc[0] = {lat: 44.977276, lng: -93.232266};
+		buildingLoc[1] = {lat: 44.977018, lng: -93.234444};
+		buildingLoc[2] = {lat: 44.978354, lng: -93.234409};
+		buildingLoc[3] = {lat: 44.977995, lng: -93.235415};
+		buildingLoc[4] = {lat: 44.978239, lng: -93.236964};
+		buildingLoc[5] = {lat: 44.976662, lng: -93.236310};
+		buildingLoc[6] = {lat: 44.977197, lng: -93.235973};
+		buildingLoc[7] = {lat: 44.977679, lng: -93.236707};
+		buildingLoc[8] = {lat: 44.971201, lng: -93.241777};
+		buildingLoc[9] = {lat: 44.976306, lng: -93.237437};
+		var map;
+		var buildingMarkers = new Array(10);
+		var marker = null;
+		function initMap() {
+			map = new google.maps.Map(document.getElementById('map'), {
+			    center: buildingLoc[0],
+			    zoom: 15
+			});
+			for(var i = 0; i < 10; i++){
+				  	buildingMarkers[i] = new google.maps.Marker({
+				    position: buildingLoc[i],
+				    title: buildingName[i],
+				    map: map,
+				    icon: iconImg,
+					});
+			}
+			var infowindows = new Array(10);
+			var contentStrings = new Array(10);
+			for(var i = 0; i < 10; i++){
+					contentStrings[i] = '<h1>'+buildingName[i]+'</h1>'+'<h2>'+buildingArchitect[i]+'</h2>'
+					+'<p>'+buildingDescription[i]+'</p>'+'<img src='+picture[i]+'>';
+				    infowindows[i] = new google.maps.InfoWindow({content: contentStrings[i], maxWidth: 300});
+			}			
+			for(var i = 0; i < 10; i++){
+				buildingMarkers[i].addListener('click', (function(marker, i) {
+				  return function() {
+				    infowindows[i].open(map, buildingMarkers[i]);
+				  }
+				})(buildingMarkers[i], i));
+			}
+			map.addListener('click', function(event){
+				addMarker(event.latLng);
+			});
+
+			var directionsService = new google.maps.DirectionsService;
+			var directionsDisplay = new google.maps.DirectionsRenderer;
+			directionsDisplay.setMap(map);
+
+			document.getElementById('destination').addEventListener('change', function(){
+				if(marker != null){
+					calculateAndDisplayRoute(directionsService, directionsDisplay);
+				}});
+			document.getElementById('mode').addEventListener('change', function(){
+				if(marker != null){
+					calculateAndDisplayRoute(directionsService, directionsDisplay);
+				}});
+			document.getElementById('map').addEventListener('click', function(){
+				if(marker != null){
+					calculateAndDisplayRoute(directionsService, directionsDisplay);
+				}});
+		}
+		function addMarker(latLng) {
+			if(marker != null){
+				marker.setMap(null); 
+			}
+			marker = new google.maps.Marker({
+			    position: latLng,
+			    map: map,
+			    title: "location: "+latLng
+			});
+			infoHello = new google.maps.InfoWindow({content: "Hello"});
+			marker.addListener('click', (function(marker) {
+				return function() {
+					infoHello.open(map, marker);
+				}
+			})(marker));
+		}
+
+
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCIM3PIi-5eQVKcK0FxpPKtujJC2lBzgAQ&callback=initMap" async defer></script>
+  </head>
+  <body>
+  	<div id="floating-panel">
+  	<form>
+  	<input type="checkbox" name="category" value=""> Arts & Entertainment<br>
+  	<input type="checkbox" name="category" value=""> Food<br>
+  	<input type="checkbox" name="category" value=""> Nightlife Spot<br>
+  	<input type="checkbox" name="category" value=""> Outdoors & Recreation<br>
+  	<input type="checkbox" name="category" value=""> Shop & Service<br>
+  	<input type="checkbox" name="category" value=""> Travel & Transport<br>
+  	<input type="checkbox" name="category" value=""> College & University<br>
+  	<input type="checkbox" name="category" value=""> Professional & Other Places<br>
+  	<input type="checkbox" name="category" value=""> Residence<br>
+  	Limit (K):<br>
+  	<input type="range" min="0" max="50" onchange="numberChange()"><br>
+  	<input type="text" disabled><br>
+  	Radius (M):<br>
+  	<input type="range" min="0" max="30" onchange="radiusChange()"><br>
+  	<input type="text" disabled><br>
+  	<input type="submit" value="Submit">
+  	</div>
+ 	</form>
+    <div id="map"></div>   
+  </body>
+</html>

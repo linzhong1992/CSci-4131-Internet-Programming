@@ -1,0 +1,3 @@
+MySQLuserID: F15CS4131U70
+MySQLpassword: 8233
+expirationTime: 60

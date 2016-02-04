@@ -1,0 +1,49 @@
+form{
+	display: inline;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+img {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.grid {
+	margin-left: auto;
+	margin-right: auto;
+	width: 700px
+}
+
+.tnbox {
+	display: inline-block;
+	margin-right: auto;
+	margin-left: auto;
+	width: 160px;
+	height: 240px;
+}
+
+.thumb {
+	height: 140px;
+	width: 140px;
+}
+
+span {
+	color: red;
+}
+
+.background {
+	background-color: gray;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	z-index: 1;
+	visibility:hidden;
+}
+
+p, h1, h3 {
+	text-align: center;
+}
